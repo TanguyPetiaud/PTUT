@@ -52,3 +52,13 @@ L’application permet :
 - d’assurer une continuité complète des politiques de sécurité,
 - et de faciliter le passage d’un modèle propriétaire vers un modèle open source.
 
+
+
+
+Opportunité
+===
+
+Le projet répond à une demande réelle du marché :
+- besoin d’interopérabilité entre marques,
+- volonté de simplification pour les PME et intégrateurs,
+- migration vers solutions open source européennes.
