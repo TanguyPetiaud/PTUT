@@ -45,5 +45,10 @@ Valeur ajoutée
 ===
 
 Maintenir un fichier de configuration WatchGuard et pouvoir le convertir automatiquement vers OPNsense apporte plusieurs bénéfices techniques et économiques.
-L’application devient un pont entre solutions propriétaires et open source, tout en assurant la continuité des politiques de sécurité.
+Elle devient un pont entre solutions propriétaires et open source, tout en assurant la continuité des politiques de sécurité.
+
+L’application permet :
+- de réduire de 60 à 80 % le temps de migration,
+- d’assurer une continuité complète des politiques de sécurité,
+- et de faciliter le passage d’un modèle propriétaire vers un modèle open source.
 
