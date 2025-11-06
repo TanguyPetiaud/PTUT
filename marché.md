@@ -8,6 +8,8 @@ Ce besoin est concret : les migrations manuelles sont longues, risquées et sour
 Les outils existants (comme FortiConverter) ne couvrent que les migrations vers Fortinet, jamais l’inverse.
 
 
+
+
 Contexte et croissance du marché
 ===
 
@@ -23,6 +25,8 @@ En Europe, il atteint environ 4,7 milliards $, et pourrait dépasser 8 milliards
 - Hausse des besoins en migration et automatisation lors de changements d’infrastructure.
 
 
+
+
 Concurrence
 ===
 
@@ -34,8 +38,12 @@ Concurrence
 | **FireMon Security Manager** | Supervision et audit de pare-feu | Bon reporting et conformité | Pas de fonction de conversion automatique | [FireMon](https://www.firemon.com/?) |
 | **Communauté WatchGuard / OPNsense** | Aide communautaire / scripts manuels | Support de la communauté, documentation ouverte | Aucune automatisation, tout se fait manuellement | [WatchGuard Community](https://community.watchguard.com/watchguard-community/discussion/3823/migration-from-fortinet-to-watchguard?) |
 
+
+
+
 Valeur ajoutée
 ===
 
 Maintenir un fichier de configuration WatchGuard et pouvoir le convertir automatiquement vers OPNsense apporte plusieurs bénéfices techniques et économiques.
 L’application devient un pont entre solutions propriétaires et open source, tout en assurant la continuité des politiques de sécurité.
+
