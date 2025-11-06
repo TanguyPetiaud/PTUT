@@ -33,3 +33,9 @@ Concurrence
 | **AlgoSec Firewall Analyzer** | Gestion centralisée des politiques de sécurité | Audit et optimisation multi-marques | Ne réalise pas de migration de fichiers, complexité d’usage | [AlgoSec](https://www.algosec.com/?) |
 | **FireMon Security Manager** | Supervision et audit de pare-feu | Bon reporting et conformité | Pas de fonction de conversion automatique | [FireMon](https://www.firemon.com/?) |
 | **Communauté WatchGuard / OPNsense** | Aide communautaire / scripts manuels | Support de la communauté, documentation ouverte | Aucune automatisation, tout se fait manuellement | [WatchGuard Community](https://community.watchguard.com/watchguard-community/discussion/3823/migration-from-fortinet-to-watchguard?) |
+
+Valeur ajoutée
+===
+
+Maintenir un fichier de configuration WatchGuard et pouvoir le convertir automatiquement vers OPNsense apporte plusieurs bénéfices techniques et économiques.
+L’application devient un pont entre solutions propriétaires et open source, tout en assurant la continuité des politiques de sécurité.
