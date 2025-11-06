@@ -1,15 +1,3 @@
-Marché cible
-===
-
-Le projet vise le marché de la cybersécurité, et plus précisément celui des pare-feu d’entreprise (Next-Generation Firewalls, NGFW).
-L’objectif est de faciliter la migration de configurations entre différents constructeurs, en commençant par WatchGuard et OPNsense.
-
-Ce besoin est concret car les migrations manuelles sont longues, risquées et sources d’erreurs.
-Les outils existants (comme FortiConverter) ne couvrent que les migrations vers Fortinet, jamais l’inverse.
-
-
-
-
 Contexte et croissance du marché
 ===
 
@@ -23,6 +11,18 @@ En Europe, il atteint environ 4,7 milliards $, et pourrait dépasser 8 milliards
 - Passage progressif vers des solutions open source (comme OPNsense) pour réduire les coûts.
 
 - Hausse des besoins en migration et automatisation lors de changements d’infrastructure.
+
+
+
+
+Marché cible
+===
+
+Le projet vise le marché de la cybersécurité, et plus précisément celui des pare-feu d’entreprise (Next-Generation Firewalls, NGFW).
+L’objectif est de faciliter la migration de configurations entre différents constructeurs, en commençant par WatchGuard et OPNsense.
+
+Ce besoin est concret car les migrations manuelles sont longues, risquées et sources d’erreurs.
+Les outils existants (comme FortiConverter) ne couvrent que les migrations vers Fortinet, jamais l’inverse.
 
 
 
@@ -62,4 +62,5 @@ Le projet répond à une demande réelle du marché :
 - besoin d’interopérabilité entre marques,
 - volonté de simplification pour les PME et intégrateurs,
 - migration vers solutions open source européennes.
+
 
