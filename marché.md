@@ -27,6 +27,13 @@ Les outils existants (comme FortiConverter) ne couvrent que les migrations vers 
 
 
 
+
+
+
+
+
+
+
 Concurrence
 ===
 
@@ -62,5 +69,6 @@ Le projet répond à une demande réelle du marché :
 - besoin d’interopérabilité entre marques,
 - volonté de simplification pour les PME et intégrateurs,
 - migration vers solutions open source européennes.
+
 
 
