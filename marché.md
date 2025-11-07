@@ -1,10 +1,10 @@
 Contexte et croissance du marché
 ===
 
-Le marché mondial des pare-feu d’entreprise représente environ 13,7 milliards $ en 2025, avec une croissance annuelle moyenne de 10 %.
-En Europe, il atteint environ 4,7 milliards $, et pourrait dépasser 8 milliards $ d’ici 2031.
+Le marché mondial des pare-feu d’entreprise représente environ \$13,7 milliards en 2025, avec une croissance annuelle moyenne de 10 %.
+En Europe, il atteint environ \$4,7 milliards, et pourrait dépasser \$8 milliards d’ici 2031.
 
-- Les tendances actuelles :
+Les tendances actuelles :
 
 - Adoption massive des pare-feu nouvelle génération (NGFW).
 
