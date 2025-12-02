@@ -26,4 +26,12 @@ Le programme écrit le fichier de configuration final.
 
 Architecture
 ===
-Le programme est constitué d'un executable, qui génère une page web (ou host un serveur local). Cette page web permet à l'utilisateur de remplir des formulaires, que l'application utilisera pour générer une configuration.
+Le programme est constitué d'un executable, qui génère une page web (ou host un serveur local).
+En mode génération, cette page web permet à l'utilisateur de remplir des formulaires, que l'application utilisera pour générer une configuration.
+En mode conversion, cette page web permet d'"uploader" un fichier de configuration, et permettra de choisir une marque/modèle de destination et exportera un fichier dans la marque choisie.
+
+La page web permettra de remplir des informations, selon les capacités du modèle interne.
+
+Il doit être clair pour l'utilisateur que le logiciel ne fera pas tout pour lui.
+De la même manière, la conversion de la configuration ne sera pas en mesure de traiter l'entièreté de la configuration originale.
+Les capacités de l'application seront limitées par l'envergure du modèle interne.
