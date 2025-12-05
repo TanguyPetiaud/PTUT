@@ -25,42 +25,36 @@ Enfin, présentation de notre modèle de distribution (finances, open-source...)
 ===
 
 ## 🎤 Nicolas (Jamy) : 
-« Bonjour à tous ! Avez-vous déjà configuré un pare-feu ? Non ? Laissez-moi vous dire une chose : c'est long, c'est pénible, et ça peut rendre fou ! Tanguy, ce travail de recopie manuelle des règles de sécurité, c'est horriblement chiant, non ? »
+« Bonjour à tous ! Avez-vous déjà configuré un pare-feu ? Non ? Laissez-moi vous dire une chose : c'est long, c'est pénible, et ça peut rendre fou ! Tanguy, ce travail de recopie manuelle des règles de sécurité, c'est horripilant, non ? »
 
 
 ## 🎤 Tanguy : 
-« Horriblement chiant, Nicolas, c'est le mot ! C'est le genre de tâche qui prend des jours, qui accumule la dette technique, et qu'on ne fait jamais correctement... N'est-ce pas, Ilyesse ? »
+« horripilant, Nicolas, c'est le mot ! C'est le genre de tâche qui prend des jours, qui accumule la dette technique, et qu'on ne fait jamais correctement... N'est-ce pas, Ilyesse ? »
 
 ## Ilyesse (vidéo – Fred énervé/fatigué) : 
 C'est une horreur ! Regardez ! (Montre un écran ou un tableau blanc) Ça fait trois mois ! À cause des recommandations ANSSI et des enjeux de souveraineté, on est obligés de migrer ces configurations vers des solutions auditables ! Mais le problème, c'est qu'on a plus de 1 500 règles à refaire. On a même oublié de créer des alias pour les serveurs critiques ! Quand l'entreprise change de matériel, les techniciens doivent tout refaire à la main : WatchGuard a son concept, Stormshield le sien... On est bloqués par la complexité ! C'est une perte de temps massive !
 
 ## 🎤 Nicolas (sur scène – Jamy) :
-« Et oui Ilyesse ! Effectivement, aujourd’hui. La contrainte de souveraineté se heurte à la réalité technique. Quand une entreprise change de marque de pare-feu, ses techniciens doivent tout refaire à la main : règles, objets, adresses, NAT… C’est long, c’est risqué, et ça coûte cher. Mais une solution est en cours de developpement et elle s'appel NETMORPH !
-
+« Et oui Ilyesse ! Effectivement, aujourd’hui. La contrainte de souveraineté se heurte à la réalité technique. Quand une entreprise change de marque de pare-feu, ses techniciens doivent tout refaire à la main : règles, objets, adresses, NAT… C’est long, c’est risqué, et ça coûte cher. Mais une solution est en cours de developpement et elle s'appel NETMORPH ! 
+Et l'équipe netmorph c'est nous
+Notre objectif, c’est de réduire ce temps de migration de 60 à 80 %, tout en garantissant que les politiques de sécurité restent cohérentes et sans erreur de traductions.
 
 ## 🎤 Tanguy (sur scène) :
-« Et l'équipe netmorph c'est nous
-Notre objectif, c’est de réduire ce temps de migration de 60 à 80 %, tout en garantissant que les politiques de sécurité restent cohérentes et sans erreur de traductions. Et pour ça, on développe une application web locale capable de :
 
-Lire un fichier de configuration XML d’un pare-feu,
-
-et en connaissant la marque au préalable,
-
-Et générer une configuration équivalente pour un autre constructeur. »
-
-
-## 🎬 [Vidéo : Ilyesse / Fred]
-« En gros, vous lui donnez un fichier WatchGuard… et hop ! Il vous sort un fichier compatible OPNsense ou vice-versa. Et bientôt, d’autres marques. L’idée, c’est d’aider les techniciens à éviter les copier-coller interminables et les erreurs humaines. »
-
-
-## 🎤 Nicolas (Jamy) :
-« Techniquement, l’outil propose trois briques :
+Et pour ça, on développe une application web locale capable de :
 
 La création de fichiers de configuration propres, via un formulaire complet qu'il faut remplir.
 
 L’analyse automatique de fichiers existants. Vous rentrez un fichier et une description vous est affichée.
 
 Et surtout, le convertisseur inter-marques, le cœur du projet qui regroupe les deux briques du dessus.
+
+
+
+## 🎬 [Vidéo : Ilyesse / Fred]
+« En gros, vous lui donnez un fichier WatchGuard… et hop ! Il vous sort un fichier compatible OPNsense ou vice-versa. Et bientôt, d’autres marques. L’idée, c’est d’aider les techniciens à éviter les copier-coller interminables et les erreurs humaines. »
+
+
 
 ## 🎤 Tanguy :
 « Et ce n’est pas seulement un outil sympa : c’est un véritable gain de productivité pour les ESN, les intégrateurs, ou les équipes IT.
@@ -72,7 +66,7 @@ et une option payante pour les fonctionnalités avancées comme la gestion des s
 
 
 ## 🎬 [Vidéo : Ilyesse / Fred]
-« Bien sûr, tout ça ne se fait pas en claquant des doigts. Les formats XML changent, certaines licences coûtent cher, et on a parfois du mal à avoir du matériel pour tester. Mais regardez, ils ont tout prévu ! »
+« Bien sûr, tout ça ne se fait pas en claquant des doigts. Certaines licences coûtent cher, et on a parfois du mal à avoir du matériel pour tester. Mais regardez, ils ont tout prévu ! »
 
 
 ## 🎤 Nicolas (Jamy) :
