@@ -54,9 +54,6 @@ Et surtout, le convertisseur inter-marques, le cœur du projet qui regroupe les 
 ## 🎬 [Vidéo : Ilyesse / Fred]
 « En gros, vous lui donnez un fichier WatchGuard… et hop ! Il vous sort un fichier compatible OPNsense ou vice-versa. Et bientôt, d’autres marques. L’idée, c’est d’aider les techniciens à éviter les copier-coller interminables et les erreurs humaines. »
 
-
-
-## 🎤 Tanguy :
 « Et ce n’est pas seulement un outil sympa : c’est un véritable gain de productivité pour les ESN, les intégrateurs, ou les équipes IT.
 Notre modèle :
 
@@ -64,8 +61,6 @@ un logiciel open-source gratuit,
 
 et une option payante pour les fonctionnalités avancées comme la gestion des sauvegardes ou du support. »
 
-
-## 🎬 [Vidéo : Ilyesse / Fred]
 « Bien sûr, tout ça ne se fait pas en claquant des doigts. Certaines licences coûtent cher, et on a parfois du mal à avoir du matériel pour tester. Mais regardez, ils ont tout prévu ! »
 
 
