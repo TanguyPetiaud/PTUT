@@ -46,6 +46,7 @@ Notre objectif, c’est de réduire ce temps de migration de 60 à 80 %, tout en
 Et pour ça, on développe une application web locale qui peut:
 - Créer des fichiers de configuration propres, via un formulaire dans le navigateur.
 - Analyser automatiquement des fichiers existants. Vous entrez un fichier et une description vous est affichée.
+
 Et en combinant ces deux éléments, on obtient un convertisseur inter-marques, le cœur du projet qui regroupe les deux briques du dessus.
 
 
