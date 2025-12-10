@@ -66,9 +66,7 @@ Bien sûr, tout ça ne se fait pas en claquant des doigts. Certaines licences co
 
 
 ### 🎤 Tanguy :
-« Et les risques ? Format XML instable du fait de mises à jour, différences d'implémentation entre les marques, et un travail en équipe réduite.
-Mais on a un planning sur 30 semaines, des phases de tests réelles, et On prévoit d'avoir un PoC fonctionnel d'ici mai. »
-
+" Actuellement, aucun outil n'exite pour répondre exactement au besoin de migration. Il existe des solutions propriétaires, mais celles-ci ne rendent possible que la migration vers la marque du propriétaire. Ce que nous proposons, c'est un outil unique pour traduire une configuration d'un pare-feu parmis un large éventail de fabriquants vers n'importe quelle autre marque de cet éventail."
 
 ### 🎬 [Vidéo : Ilyesse / Fred – conclusion]
 « En résumé : un projet utile, faisable, et qui répond à un vrai besoin dans le monde pro. On automatise une tâche pénible, on limite les erreurs, et on aide les entreprises à passer d’un pare-feu à un autre sans galérer. »
