@@ -25,7 +25,7 @@ Enfin, présentation de notre modèle de distribution (finances, open-source...)
 ===
 
 ### 🎤 Nicolas (Jamy) : 
-« Bonjour à tous ! Avez-vous déjà configuré un pare-feu ? Non ? Laissez-moi vous dire une chose : c'est long, c'est pénible, et ça peut rendre fou ! Tanguy, ce travail de recopie manuelle des règles de sécurité, c'est horripilant, non ? »
+« Bonjour à tous ! Avez-vous déjà configuré un pare-feu ? Non ? Laissez moi vous dire une chose : c'est long, c'est pénible, et ça peut rendre fou ! Tanguy, ce travail de recopie manuelle des règles de sécurité, c'est horripilant, non ? »
 
 
 ### 🎤 Tanguy : 
@@ -37,9 +37,7 @@ C'est une horreur ! Regardez ! (Montre un écran ou un tableau blanc) Ça fait t
 
 
 ### 🎤 Nicolas (sur scène – Jamy) :
-« Et oui Ilyesse ! Effectivement, aujourd’hui. La contrainte de souveraineté se heurte à la réalité technique. Quand une entreprise change de marque de pare-feu, ses techniciens doivent tout refaire à la main : règles, objets, adresses, NAT… C’est long, c’est risqué, et ça coûte cher. Mais une solution est en cours de developpement et elle s'appelle NETMORPH ! 
-Et l'équipe netmorph c'est nous
-Notre objectif, c’est de réduire ce temps de migration de 60 à 80 %, tout en garantissant que les politiques de sécurité restent cohérentes et sans erreur de traductions.
+« Et oui Ilyesse ! Effectivement, aujourd’hui, la contrainte de souveraineté se heurte à la réalité technique. Quand une entreprise change de marque de pare-feu, ses techniciens doivent tout refaire à la main : règles, objets, adresses, NAT… C’est long, c’est risqué, et ça coûte cher. Mais une solution est en cours de développement et elle s'appel NETMORPH ! Et l'équipe netmorph c'est nous. Notre objectif, c’est de réduire ce temps de migration de 60 à 80 %.»
 
 
 ### 🎤 Tanguy (sur scène) :
@@ -66,7 +64,7 @@ Bien sûr, tout ça ne se fait pas en claquant des doigts. Certaines licences co
 
 
 ### 🎤 Tanguy :
-" Actuellement, aucun outil n'exite pour répondre exactement au besoin de migration. Il existe des solutions propriétaires, mais celles-ci ne rendent possible que la migration vers la marque du propriétaire. Ce que nous proposons, c'est un outil unique pour traduire une configuration d'un pare-feu parmis un large éventail de fabriquants vers n'importe quelle autre marque de cet éventail."
+"Niveau finances, pour Netmorph, on compte environ un travail de 80h. De plus, nous allons utiliser en premier les licences gratuites, ce qui réduit le coût de développement. Pour les entreprises, cela représente un grand gain de temps et d'argent. La rapidité de Netmoprh permet d'éviter d'avoir plusieurs licences à payer en même temps."
 
 ### 🎬 [Vidéo : Ilyesse / Fred – conclusion]
 « En résumé : un projet utile, faisable, et qui répond à un vrai besoin dans le monde pro. On automatise une tâche pénible, on limite les erreurs, et on aide les entreprises à passer d’un pare-feu à un autre sans galérer. »
