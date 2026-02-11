@@ -2,6 +2,7 @@
 A brief description of the content of a configuration file, with the changes made since the last version.
 All versions are listed in order of generation.
 
+The config files are included in this repo.
 
 
 # Base configuration
