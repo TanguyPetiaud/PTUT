@@ -1,2 +1,36 @@
+GENERAL TASKS
+===
+
+Interface configuration				-> analyzed
+VLAN						-> analyzed
+NAT						
+Filter rules					
+Objects/aliases					-> analyzed
+System configuration (NTP...)			
+
+-> everything up to here is essential
+
+
+DHCP						-> started through other tasks
+Static routes
+Dynamic routes
+VPN (IPSec, SSL)
+
+
+-> everything up to here is important
+
+-> everything from here is optimal
+
+SNMP
+SSO
+
+
+-> end of tasks
+
+
+FINER TASKS
+===
+
 Check dhcp server activation on an interface
 -> See Interface configuration - part 3
+done

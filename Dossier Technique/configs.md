@@ -193,7 +193,7 @@ A "gateway-ip" tag was added in the dhcp server options.
 The interface 1 was changed:
 - Type: Trusted -> VLAN
 A VLAN was created:
-VLAN 23, testVLAN, tagged traffic on Interface 1, 192.168.0.10/24
+VLAN 23, testVLAN, type Trusted, tagged traffic on Interface 1, 192.168.0.10/24
 
 ## Effects
 ### Line ~17525
@@ -214,4 +214,53 @@ Tags:
 
 
 
-# ... - step 11
+# VLAN configuration - step 11
+## Changes
+Added a second VLAN:
+VLAN 56, testVLAN2, type "Optional", untagged traffic on interface 1, 192.168.1.11/24
+"Apply firewall policies to intra-VLAN traffic" option enabled.
+
+## Effects
+### Line ~17500
+A new alias was added. These aliases are actually just the alias objects used by the UTM. To verify later, but I believe this solves the alias analysis problem.
+
+### Line ~18200
+As expected, a new interface section was added for the new VLAN.
+To note, a special "vlan-if" tag was used to define this interface.
+
+
+
+# Aliases - step 12
+## Changes
+Added a new alias:
+testAddress, with short description, two members: an IPv4 (192.168.11.22) and an FQDN (perdu.com)
+
+## Effects
+### Line ~750
+A new "address group" was added for each alias.
+There names were "[alias name].[item number].alm".
+One was type 8 (FQDN), the other was type 1 (IPv4 host).
+
+### Line ~17500
+A new alias tag was added, with two "alias-member", their "address" being the name of the aforementioned "address group" objects.
+
+
+
+# Aliases - step 13
+## Changes
+Added a new item to the alias from the previous step: an IPv4 network (172.16.33.0/24).
+Removed the FQDN member from the alias.
+
+## Effects
+### Line ~750
+The address-group was changed, replacing the infos for the FQDN to those for the network.
+In essence, the address-groups (related to aliases) represent the items in the list of the alias. They only exist to support the alias definition.
+
+
+
+# NAT - step 14
+## Changes
+
+
+## Effects
+
