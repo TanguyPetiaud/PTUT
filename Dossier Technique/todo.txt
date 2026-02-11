@@ -3,7 +3,7 @@ GENERAL TASKS
 
 Interface configuration				-> analyzed
 VLAN						-> analyzed
-NAT						
+NAT						-> in progress, dynamic ok, 1to1 ok
 Filter rules					
 Objects/aliases					-> analyzed
 System configuration (NTP...)			
@@ -34,3 +34,10 @@ FINER TASKS
 Check dhcp server activation on an interface
 -> See Interface configuration - part 3
 done
+
+
+See how Dynamic NAT (PAT) is handled in the xml
+In the web UI:
+- Network -> NAT, add the address range to the pool, with the desired interface
+- Firewall -> Firewall Policies, activated Dynamic NAT in the rules' advanced options
+Also see for 1to1 and Static NAT (port forwarding)

@@ -237,7 +237,7 @@ testAddress, with short description, two members: an IPv4 (192.168.11.22) and an
 
 ## Effects
 ### Line ~750
-A new "address group" was added for each alias.
+A new "address group" was added for each alias, with property 0.
 There names were "[alias name].[item number].alm".
 One was type 8 (FQDN), the other was type 1 (IPv4 host).
 
@@ -260,7 +260,30 @@ In essence, the address-groups (related to aliases) represent the items in the l
 
 # NAT - step 14
 ## Changes
-
+Added an address range to NAT: 10.1.0.0/24 to any external interface, in position 2.
 
 ## Effects
+### Line ~750
+A new address-group was added, with the name "dnat.from.4", and property 16.
+The previous dnat.from.x were moved, to reflect the new order (2 became 3, 3 became 4 and the new one became the new 2).
+
+### Line ~19500
+A new dnat tag was added to the dnat-list, to reflect the new count (4).
+
+I assume the firewall filter definition will include a reference to dnat somewhere.
+For some odd reason, it seems alias definitions get shuffled around with configuration modifications. Maybe (probably) a diff quirk. Let's pray alias definition order isn't important.
+
+
+
+# NAT - step 15
+## Changes
+Added a new 1to1 NAT definition: 192.168.11.12 -> 172.23.200.19
+
+## Effects
+### Line ~850
+One address-group was added for each address (internal and external), called Nat.[x].1nat and Real.[x]1nat.
+
+### Line ~19500
+"one-to-one-nat-list" was modified to include a new "one-to-one-nat" item, with a real-address, a nat-address and interface tags (with the names).
+
 
