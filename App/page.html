@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application NETMORPH</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* En-tête avec logo */
+        .header {
+            background-color: #ffffff;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid #e0e0e0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            background-color: #2c3e50;
+            color: white;
+            padding: 10px 20px;
+            font-weight: bold;
+            font-size: 16px;
+            margin-right: 20px;
+            border-radius: 4px;
+        }
+
+        .header-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        /* Barre de navigation */
+        .navbar {
+            background-color: #34495e;
+            display: flex;
+            padding: 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-item {
+            flex: 1;
+            padding: 15px 20px;
+            text-align: center;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-right: 1px solid #2c3e50;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .nav-item:last-child {
+            border-right: none;
+        }
+
+        .nav-item:hover {
+            background-color: #2c3e50;
+        }
+
+        .nav-item.active {
+            background-color: #1abc9c;
+        }
+
+        /* Zone de contenu principale */
+        .content-area {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            background-color: #f5f5f5;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content-box {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 32px;
+        }
+
+        h2 {
+            color: #34495e;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        /* Pied de page */
+        .footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-message {
+            font-size: 14px;
+        }
+
+        .footer-version {
+            font-size: 14px;
+            color: #95a5a6;
+        }
+
+        /* Boutons et éléments interactifs */
+        .button {
+            background-color: #1abc9c;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #16a085;
+        }
+
+        .info-card {
+            background-color: #ecf0f1;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .warning-card {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .success-card {
+            background-color: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barre de navigation -->
+    <div class="navbar">
+        <div class="nav-item active" onclick="showPage('page1')">Accueil</div>
+        <div class="nav-item" onclick="showPage('page2')">Affichier la configuration</div>
+        <div class="nav-item" onclick="showPage('page3')">Génerer une configuration</div>
+        <div class="nav-item" onclick="showPage('page4')">Netmorpher</div>
+        <div class="nav-item" onclick="showPage('page5')">Support</div>
+    </div>
+
+    <!-- Zone de contenu -->
+    <div class="content-area">
+        <!-- Page 1: Accueil -->
+        <div id="page1" class="page active">
+                <div class="info-card">
+                    <h1>Bienvenue sur votre application NETMORPH</h1>
+                    <p>
+                        Choisissez une action dans la barre de recherche pour commencer.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 2 -->
+        <div id="page2" class="page">
+            <div class="content-box">
+                
+            </div>
+        </div>
+
+        <!-- Page 3 -->
+        <div id="page3" class="page">
+            <div class="content-box">
+                
+            </div>
+        </div>
+
+        <!-- Page 4 -->
+        <div id="page4" class="page">
+            <div class="content-box">
+                
+            </div>
+        </div>
+
+        <!-- Page 5 -->
+        <div id="page5" class="page">
+            <div class="content-box">
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Pied de page -->
+    <div class="footer">
+        <div class="footer-message">NETMORPH</div>
+        <div class="footer-version">Version : <span id="datetime"></span></div>
+    </div>
+
+    <script>
+        // Fonction pour afficher une page
+        function showPage(pageId) {
+            // Cacher toutes les pages
+            var pages = document.getElementsByClassName('page');
+            for (var i = 0; i < pages.length; i++) {
+                pages[i].classList.remove('active');
+            }
+
+            // Retirer la classe active de tous les items de navigation
+            var navItems = document.getElementsByClassName('nav-item');
+            for (var i = 0; i < navItems.length; i++) {
+                navItems[i].classList.remove('active');
+            }
+
+            // Afficher la page sélectionnée
+            document.getElementById(pageId).classList.add('active');
+
+            // Activer l'item de navigation correspondant
+            var pageIndex = parseInt(pageId.replace('page', '')) - 1;
+            navItems[pageIndex].classList.add('active');
+        }
+
+        // Mettre à jour la date et l'heure
+        function updateDateTime() {
+            var now = new Date();
+            var dateStr = now.toLocaleDateString('fr-FR');
+            var timeStr = now.toLocaleTimeString('fr-FR');
+            document.getElementById('datetime').textContent = 'v1.0 - ' + dateStr + ' ' + timeStr;
+        }
+
+        // Mettre à jour l'heure chaque seconde
+        setInterval(updateDateTime, 1000);
+        updateDateTime();
+
+        // Message de bienvenue au chargement
+        window.onload = function() {
+            console.log('Application NETMORPH chargée avec succès!');
+        };
+    </script>
+</body>
+</html>
