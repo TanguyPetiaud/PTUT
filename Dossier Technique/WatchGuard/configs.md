@@ -287,3 +287,62 @@ One address-group was added for each address (internal and external), called Nat
 "one-to-one-nat-list" was modified to include a new "one-to-one-nat" item, with a real-address, a nat-address and interface tags (with the names).
 
 
+
+# Static NAT - step 16
+## Changes
+Added a new static NAT (port forward) rule:
+minecraft, type "internal IP address", external -> 192.168.25.56, no options
+
+## Effects
+### Line ~750
+A new address-group was added, [nat rule name].[x].snat, property 16, with one member, the IP used inside.
+
+### Line ~2720
+A new NAT item was added, property 0 type 7, addr-type 4 (static IP?), port 0 (no port change?), addr-name the aforementioned address-group, and ext-addr-name the firebox with interface external.
+
+### Line ~17600
+A new alias was added, property 32, referencing the firebox external interface again.
+
+
+
+# Static NAT - step 17
+## Changes
+Changed the minecraft SNAT definition: changed port to 25562.
+Added a new SNAT definition:
+web, type "FQDN", external -> web.infra.local, no options
+
+## Effects
+### Line ~880
+A new address group was added, webserver.1.snat, as above.
+
+### Line ~2740
+Nat item port for minecraft was changed from 0 (no port) to 25562.
+A new nat item was added for the webserver, as before.
+
+### Line ~17660
+A new alias was added for the webserver snat, as above.
+
+
+
+# General - step 18
+## Changes
+Changed the management port from 8080 to 8081
+Removed 1.pool.ntp.org, and added ntp.unice.fr to the NTP server list for the firewall.
+
+Warning, only 3 NTP servers can be configured, don't forget to add a validation step in the final program.
+
+## Effects
+### Line ~35
+Very basic, only an ntp-server-ip tag was changed.
+
+### Lines ~600-700
+A bunch of options were added for seemingly no reason.
+Analyze in detail if errors arise.
+
+### Line ~2330
+The "service" WG-Fireware-XTM-WebUI was changed, the server-port was changed to 8081.
+
+
+
+# FW rules - step 19
+

@@ -3,10 +3,10 @@ GENERAL TASKS
 
 Interface configuration				-> analyzed
 VLAN						-> analyzed
-NAT						-> in progress, dynamic ok, 1to1 ok
+NAT						-> analyzed, dynamic ok, 1to1 ok, static ok
 Filter rules					
 Objects/aliases					-> analyzed
-System configuration (NTP...)			
+System configuration (NTP...)			-> analyzed, NTP and management port
 
 -> everything up to here is essential
 
