@@ -16,7 +16,7 @@ echo "========================================"
 echo ""
 
 # Compilation avec PyInstaller
-pyinstaller --onefile --windowed --name "MonApplicationWeb" --add-data "page.html:." web_viewer.py
+py -m PyInstaller --onefile --windowed --name "Netmorph" --add-data "page.html;." --distpath "dist\NETMORPH" web_viewer.py
 
 echo ""
 echo "========================================"

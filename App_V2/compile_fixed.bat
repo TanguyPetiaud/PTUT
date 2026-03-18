@@ -19,7 +19,7 @@ echo ========================================
 echo.
 
 REM Compilation avec PyInstaller
-python -m PyInstaller --onedir --windowed --name "NETMORPH" --add-data "page.html;." main.py
+py -m PyInstaller --onefile --windowed --name "Netmporh" --add-data "page.html;." --distpath "dist\NETMORPH" web_viewer.py
 
 echo.
 echo ========================================
