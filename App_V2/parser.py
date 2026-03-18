@@ -6,11 +6,19 @@ def get_dashboard_data(xml_path):
     is_wg = (root.tag == "profile")
     data = {"is_wg": is_wg, "fw_type": "WatchGuard Fireware" if is_wg else "pfSense"}
     
+    # /!\ Change 'is_wg' to 'fw_brand'
+
+    # Here:
+    # Define an object called data, containing values (system, interfaces...) which will be used in the engine.
+
     if is_wg:
+        # Firebox model?
         data["sys"] = {
             "hostname": safe_text(root.find(".//device-conf"), "system-name") or "FireboxV",
             "model": safe_text(root.find(".//device-conf"), "for-model") or "WatchGuard"
         }
+
+        # Interface names and IPs
         interfaces = []
         for itf in root.findall(".//interface-list/interface"):
             name = safe_text(itf, "name")
@@ -22,6 +30,8 @@ def get_dashboard_data(xml_path):
             if name: interfaces.append({"name": name, "ip": ip})
         data["itf"] = interfaces
 
+        # FW rules
+        # Has name, action, port?, source, dest
         policies = []
         for pol in root.findall(".//abs-policy-list/abs-policy"):
             if safe_text(pol, "property") == "32": continue
@@ -35,16 +45,20 @@ def get_dashboard_data(xml_path):
             })
         data["pol"] = policies
 
+        # Aliases
         all_found = set(["Any", "Any-Trusted", "Any-External", "Any-Optional", "Firebox"])
         for al in root.findall(".//alias-list/alias/name"):
             if al.text and not al.text.endswith(".from") and not al.text.endswith(".to"): all_found.add(al.text)
         data["aliases"] = sorted(list(all_found))
 
     else:
+        # pfSense model?
         data["sys"] = {
             "hostname": safe_text(root.find("system"), "hostname") or "pfSense",
             "model": safe_text(root.find("system"), "domain") or "local"
         }
+
+        # Interface names and IPs
         interfaces = []
         itfs_node = root.find("interfaces")
         if itfs_node is not None:
@@ -54,6 +68,8 @@ def get_dashboard_data(xml_path):
                 interfaces.append({"name": f"{name} ({safe_text(itf, 'if')})", "ip": ip})
         data["itf"] = interfaces
 
+        # FW rules
+        # Has name, action, port?, source, dest
         policies = []
         for pol in root.findall(".//filter/rule"):
             src = "any"; dst = "any"
@@ -71,6 +87,7 @@ def get_dashboard_data(xml_path):
             })
         data["pol"] = policies
 
+        # Aliases
         all_found = set(["any", "wan", "lan", "wanip", "lanip"])
         for al in root.findall(".//aliases/alias/name"):
             if al.text: all_found.add(al.text)

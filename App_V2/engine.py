@@ -2,6 +2,9 @@ import copy, re, os, shutil
 import xml.etree.ElementTree as ET
 from utils import safe_text, resolve_wg_alias, app_dir, get_working_xml
 
+
+# AI ahh comments
+
 # =====================================================================
 # 🛠️ OUTILS DE TRADUCTION (SENS WG -> PF)
 # =====================================================================
