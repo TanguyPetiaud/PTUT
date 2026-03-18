@@ -19,7 +19,7 @@ echo ========================================
 echo.
 
 REM Compilation avec PyInstaller
-pyinstaller --onefile --windowed --name "MonApplicationWeb" --add-data "page.html;." web_viewer.py
+python -m PyInstaller --onefile --windowed --name "MonApplicationWeb" --add-data "page.html;." web_viewer.py
 
 echo.
 echo ========================================
