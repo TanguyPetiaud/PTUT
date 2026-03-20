@@ -6,8 +6,13 @@ from utils import safe_text, resolve_wg_alias, app_dir, get_working_xml
 # AI ahh comments
 
 # =====================================================================
-# 🛠️ OUTILS DE TRADUCTION (SENS WG -> PF)
+#  Utility
 # =====================================================================
+
+def cidr_to_netmask(cidr):
+    cidr = int(cidr)
+    mask = (0xffffffff >> (32 - cidr)) << (32 - cidr)
+    return f"{(mask >> 24) & 0xff}.{(mask >> 16) & 0xff}.{(mask >> 8) & 0xff}.{mask & 0xff}"
 
 def netmask_to_cidr(netmask):
     """Convertit un masque (ex: 255.255.255.0) en CIDR (ex: 24)"""
@@ -16,8 +21,16 @@ def netmask_to_cidr(netmask):
     except:
         return 32
 
+
+
+# =====================================================================
+#  EXTRACTEURS WATCHGUARD (WG -> X)
+# =====================================================================
+
 def wg_get_service_details(wg_root, svc_name):
     """Trouve le protocole et le port d'un Service WatchGuard pour pfSense"""
+    # Service = règle de filtrage?
+    # Sert apparement pour les règles de filtrage et NAT, ces règles seraient traitées de la même manière dans les fichiers
     for svc in wg_root.findall(".//service-list/service"):
         if safe_text(svc, "name") == svc_name:
             item = svc.find(".//service-item/member")
@@ -33,6 +46,9 @@ def wg_get_service_details(wg_root, svc_name):
 
 def resolve_wg_alias_deep(wg_root, alias_name):
     """Fouille récursivement pour extraire la VRAIE IP (ex: REDIRECTION.snat -> 14.0.0.1)"""
+    # Trouve l'IP associée à un alias WG (?)
+
+    # Common WG aliases to PF (pas d'IP?)
     std_map = {"Any": "any", "Any-External": "any", "Any-Trusted": "lan", "Firebox": "wanip"}
     if alias_name in std_map: return std_map[alias_name]
 
@@ -55,19 +71,26 @@ def resolve_wg_alias_deep(wg_root, alias_name):
                 if ip: return ip
     return alias_name
 
-# =====================================================================
-# 🛡️ TES FONCTIONS (NE PAS TOUCHER - PF -> WG)
-# =====================================================================
 
-def cidr_to_netmask(cidr):
-    cidr = int(cidr)
-    mask = (0xffffffff >> (32 - cidr)) << (32 - cidr)
-    return f"{(mask >> 24) & 0xff}.{(mask >> 16) & 0xff}.{(mask >> 8) & 0xff}.{mask & 0xff}"
+
+# No pfSense extractors? 🥺
+# Théorie: WG = Bordel, PF = plus simple
+
+
+
+# =====================================================================
+#  INJECTEURS WATCHGUARD (X -> WG)
+# =====================================================================
 
 def ensure_wg_ip_alias(root, ip_str):
+    # Makes sure an a alias/address group with the input IP and creates it if not?
+
+    # Make sure there is at least an address group list and an alias list?
     ag_list = root.find("address-group-list")
     alias_list = root.find("alias-list")
     if ag_list is None or alias_list is None: return
+    
+    # If there is no address group that matches the input IP
     exists_ag = any(safe_text(ag, "name") == ip_str for ag in ag_list.findall("address-group"))
     if not exists_ag:
         ag = ET.SubElement(ag_list, "address-group")
@@ -82,6 +105,8 @@ def ensure_wg_ip_alias(root, ip_str):
         else:
             ET.SubElement(mem, "type").text = "1"
             ET.SubElement(mem, "host-ip-addr").text = ip_str
+    
+    # If there is no alias that matches the input IP
     exists_al = any(safe_text(al, "name") == ip_str for al in alias_list.findall("alias"))
     if not exists_al:
         new_al = ET.SubElement(alias_list, "alias")
@@ -94,15 +119,26 @@ def ensure_wg_ip_alias(root, ip_str):
         ET.SubElement(al_mem, "interface").text = "Any"
 
 def ensure_wg_custom_service(wg_root, proto, port):
+    # Ensures a custom service exists, creates it if not.
+    # What is service? A filtering policy?
+
+    # List all services
+    # Make one if there is none.
     svc_list = wg_root.find("service-list")
     if svc_list is None: svc_list = ET.SubElement(wg_root, "service-list")
+
+    # Make the service name
     proto_upper = "TCP" if proto == "tcp" else ("UDP" if proto == "udp" else "ANY")
     svc_name = f"{proto_upper}-{port}"
+    
+    # Exit if a service exists with the sought name
     if any(safe_text(svc, "name") == svc_name for svc in svc_list.findall("service")): return svc_name
+
+    # Write a new service
     new_svc = ET.SubElement(svc_list, "service")
     ET.SubElement(new_svc, "name").text = svc_name
     ET.SubElement(new_svc, "description").text = f"Migrated Custom Service {proto_upper} {port}"
-    ET.SubElement(new_svc, "property").text = "2"
+    ET.SubElement(new_svc, "property").text = "2"   # Propery 2 -> see notes
     ET.SubElement(new_svc, "proxy-type")
     svc_item = ET.SubElement(new_svc, "service-item")
     mem = ET.SubElement(svc_item, "member")
@@ -114,6 +150,9 @@ def ensure_wg_custom_service(wg_root, proto, port):
     return svc_name
 
 def wg_inject_nat_rule(wg_root, nat_name, target_ip, ext_port, int_port, ext_alias="Firebox"):
+    # Writes a nat rule into the file.
+    # Make sure the actions correspond to my notes.
+
     ag_list = wg_root.find("address-group-list")
     if ag_list is None: ag_list = ET.SubElement(wg_root, "address-group-list")
     alias_list = wg_root.find("alias-list")
@@ -157,6 +196,9 @@ def wg_inject_nat_rule(wg_root, nat_name, target_ip, ext_port, int_port, ext_ali
     return wrapper_name
 
 def wg_inject_rule(wg_root, name, action, service, src, dst, pnat=None, is_snat=False):
+    # Writes a nat rule into the file.
+    # Make sure the actions correspond to my notes.
+    
     abs_list = wg_root.find("abs-policy-list"); pol_list = wg_root.find("policy-list"); alias_list = wg_root.find("alias-list")
     internal_id = f"{name}-00"
     new_abs = copy.deepcopy(abs_list.find("abs-policy"))
@@ -208,8 +250,10 @@ def wg_inject_rule(wg_root, name, action, service, src, dst, pnat=None, is_snat=
         ET.SubElement(new_eng.find("to-alias-list"), "alias").text = t_alias
     abs_list.append(new_abs); pol_list.append(new_eng)
 
+
+
 # =====================================================================
-# 🌍 INJECTEURS POUR PFSENSE (WG -> PF)
+#  INJECTEURS PFSENSE (X -> PF)
 # =====================================================================
 
 def pfsense_inject_nat_rule(pfs_root, descr, proto, ext_port, target_ip, target_port):
@@ -243,8 +287,10 @@ def pfsense_inject_rule(pfs_root, name, action, interface, proto, src, dst, dst_
     ET.SubElement(rule, "descr").text = name
     filter_node.append(rule)
 
+
+
 # =====================================================================
-# ⚙️ MOTEUR DE MIGRATION
+#  MOTEUR DE MIGRATION
 # =====================================================================
 
 def perform_migration(src_path, tgt_path):
@@ -252,20 +298,35 @@ def perform_migration(src_path, tgt_path):
     t_tgt = ET.parse(tgt_path); r_tgt = t_tgt.getroot()
     migrated_count = 0
     
+    # A source config file and base target file are given.
+    # Translation steps are decided based on the root tags on both files.
+
+    # Only NAT and filtering policies are migrated, no aliases, interfaces...
+    # To add: interface configuration, VLANs, alias transcription, general (management port, NTP servers)
+
     # 🔄 WATCHGUARD --> PFSENSE
     if r_src.tag == "profile" and r_tgt.tag == "pfsense":
+        # Ignores WG specific rules.
         ignored = ["watchguard certificate portal", "unhandled internal packet", "unhandled external packet", "allow-ike-to-firebox", "outgoing"]
+        
+        # For each WG filter policy, prepare and inject an equivalent pfSense rule.
         for pol in r_src.findall(".//abs-policy-list/abs-policy"):
+            # Only migrate enabled policies.
             if safe_text(pol, "property") == "32" or safe_text(pol, "enabled") == "false": continue
+            
             name = safe_text(pol, "name")
             if name.lower() in ignored: continue
             
+            # Action
             act = "allow" if safe_text(pol, "firewall").lower() in ["1", "allow", "proxy"] else "block"
+            # Protcol and port
             proto, port = wg_get_service_details(r_src, safe_text(pol, "service"))
+            # IP Source and Destination
             pf_src = resolve_wg_alias_deep(r_src, safe_text(pol, "from-alias-list/alias"))
             pf_dst = resolve_wg_alias_deep(r_src, safe_text(pol, "to-alias-list/alias"))
-            pnat = safe_text(pol, "policy-nat")
             
+            # Is NAT?
+            pnat = safe_text(pol, "policy-nat")
             if pnat:
                 for nat in r_src.findall(".//nat-list/nat"):
                     if safe_text(nat, "name") == pnat:
@@ -276,13 +337,17 @@ def perform_migration(src_path, tgt_path):
                             pfsense_inject_nat_rule(r_tgt, f"NAT_{name}", proto, port, real_ip, t_port)
                             pf_dst = real_ip; port = t_port
                         break
+
+            # Inject into pfSense
             pfsense_inject_rule(r_tgt, f"[MIG] {name}", act, "wan" if pf_src=="any" else "lan", proto, pf_src, pf_dst, port)
             migrated_count += 1
 
-    # 🔄 PFSENSE --> WATCHGUARD (TES RÈGLES QUI MARCHENT)
+    # 🔄 PFSENSE --> WATCHGUARD
     elif r_src.tag == "pfsense" and r_tgt.tag == "profile":
         alias_map = {"lan": "Any-Trusted", "wan": "Any-External", "any": "Any", "wanip": "Firebox", "(self)": "Firebox"}
         pf_nats_map = {}
+
+        # Translate NAT rules
         pf_nats = r_src.find("nat")
         if pf_nats is not None:
             for pf_nat in pf_nats.findall("rule"):
@@ -291,6 +356,7 @@ def perform_migration(src_path, tgt_path):
                 int_port = safe_text(pf_nat, "local-port") or ext_port
                 if target_ip: pf_nats_map[target_ip.lower()] = {"ext_port": ext_port, "int_port": int_port}
         
+        # Translate filtering policies
         for pf_rule in r_src.findall(".//filter/rule"):
             if safe_text(pf_rule, "descr") in ["Anti-Lockout Rule", "Default allow LAN to any rule"]: continue
             act = "allow" if safe_text(pf_rule, "type").lower() == "pass" else "block"

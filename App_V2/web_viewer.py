@@ -1,3 +1,10 @@
+# ============================= #
+#                               #
+#     /!\ PLUS UTILISÉ /!\      #
+#                               #
+# ============================= #
+
+
 import sys, os, html, xml.etree.ElementTree as ET
 import re, copy, shutil, traceback
 from urllib.parse import urlparse, parse_qs, unquote
