@@ -1,0 +1,28 @@
+# ── Secrets ──────────────────────────────────────────────────────────────────
+.env
+
+# ── Configurations firewall (données sensibles) ───────────────────────────────
+firewall.xml
+firewall_modifie.xml
+*.backup.xml
+config-pfSense*.xml
+Firebox*.xml
+FireboxV*.xml
+
+# ── Compilation PyInstaller ───────────────────────────────────────────────────
+build/
+dist/
+*.spec
+
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+
+# ── Logs ──────────────────────────────────────────────────────────────────────
+*.log
+
+# ── Outils ────────────────────────────────────────────────────────────────────
+.claude/
+.venv/
+venv/

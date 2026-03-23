@@ -6,7 +6,7 @@
 		<optimization>normal</optimization>
 		<hostname>pfSense</hostname>
 		<domain>home.arpa</domain>
-		<dnsallowoverride>on</dnsallowoverride>
+		<dnsallowoverride></dnsallowoverride>
 		<group>
 			<name>all</name>
 			<description><![CDATA[All Users]]></description>
@@ -38,8 +38,6 @@
 			<protocol>https</protocol>
 			<loginautocomplete></loginautocomplete>
 			<ssl-certref>687a4d09a3a0c</ssl-certref>
-			<althostnames></althostnames>
-			<dashboardcolumns>2</dashboardcolumns>
 		</webgui>
 		<disablenatreflection>yes</disablenatreflection>
 		<disablesegmentationoffloading></disablesegmentationoffloading>
@@ -55,18 +53,17 @@
 		<hn_altq_enable></hn_altq_enable>
 		<already_run_config_upgrade></already_run_config_upgrade>
 		<ssh></ssh>
-		<timezone>Etc/UTC</timezone>
 	</system>
 	<interfaces>
 		<wan>
-			<if>xn0</if>
-			<descr><![CDATA[WAN]]></descr>
-			<alias-address></alias-address>
-			<alias-subnet>32</alias-subnet>
-			<spoofmac></spoofmac>
 			<enable></enable>
+			<if>xn0</if>
+			<blockbogons></blockbogons>
+			<descr><![CDATA[WAN]]></descr>
 			<ipaddr>dhcp</ipaddr>
 			<dhcphostname></dhcphostname>
+			<alias-address></alias-address>
+			<alias-subnet>32</alias-subnet>
 			<dhcprejectfrom></dhcprejectfrom>
 			<adv_dhcp_pt_timeout></adv_dhcp_pt_timeout>
 			<adv_dhcp_pt_retry></adv_dhcp_pt_retry>
@@ -85,7 +82,8 @@
 			<ipaddrv6>dhcp6</ipaddrv6>
 			<dhcp6-duid></dhcp6-duid>
 			<dhcp6-ia-pd-len>0</dhcp6-ia-pd-len>
-			<adv_dhcp6_prefix_selected_interface>lan</adv_dhcp6_prefix_selected_interface>
+			<adv_dhcp6_prefix_selected_interface>wan</adv_dhcp6_prefix_selected_interface>
+			<spoofmac></spoofmac>
 		</wan>
 		<lan>
 			<enable></enable>
@@ -99,21 +97,15 @@
 			<track6-interface>wan</track6-interface>
 			<track6-prefix-id>0</track6-prefix-id>
 		</lan>
-		<opt1>
-			<descr><![CDATA[OPT1]]></descr>
-			<if>xn1.40</if>
-			<ipaddr>15.0.0.2</ipaddr>
-			<subnet>28</subnet>
-			<spoofmac></spoofmac>
-		</opt1>
 	</interfaces>
-	<staticroutes></staticroutes>
+	<staticroutes>
+	</staticroutes>
 	<dhcpd>
 		<lan>
 			<enable></enable>
 			<range>
-				<from>192.168.1.10</from>
-				<to>192.168.1.245</to>
+				<from>192.168.1.100</from>
+				<to>192.168.1.199</to>
 			</range>
 		</lan>
 	</dhcpd>
@@ -149,7 +141,7 @@
 	<filter>
 		<rule>
 			<id></id>
-			<tracker>1772314882</tracker>
+			<tracker>1774211362</tracker>
 			<type>pass</type>
 			<interface>wan</interface>
 			<ipprotocol>inet</ipprotocol>
@@ -167,84 +159,18 @@
 				<any></any>
 			</source>
 			<destination>
-				<network>(self)</network>
-			</destination>
-			<descr></descr>
-			<created>
-				<time>1772314882</time>
-				<username><![CDATA[admin@192.168.1.100 (Local Database)]]></username>
-			</created>
-			<updated>
-				<time>1772314996</time>
-				<username><![CDATA[admin@192.168.1.100 (Local Database)]]></username>
-			</updated>
-		</rule>
-		<rule>
-			<id></id>
-			<tracker>1772315107</tracker>
-			<type>block</type>
-			<interface>lan</interface>
-			<ipprotocol>inet</ipprotocol>
-			<tag></tag>
-			<tagged></tagged>
-			<max></max>
-			<max-src-nodes></max-src-nodes>
-			<max-src-conn></max-src-conn>
-			<max-src-states></max-src-states>
-			<statetimeout></statetimeout>
-			<statetype><![CDATA[keep state]]></statetype>
-			<os></os>
-			<protocol>tcp</protocol>
-			<source>
-				<network>lanip</network>
-			</source>
-			<destination>
-				<address>16.0.0.0/24</address>
-				<port>22</port>
-			</destination>
-			<descr></descr>
-			<updated>
-				<time>1772315107</time>
-				<username><![CDATA[admin@10.0.0.5 (Local Database)]]></username>
-			</updated>
-			<created>
-				<time>1772315107</time>
-				<username><![CDATA[admin@10.0.0.5 (Local Database)]]></username>
-			</created>
-		</rule>
-		<rule>
-			<id></id>
-			<tracker>1772314852</tracker>
-			<type>pass</type>
-			<interface>lan</interface>
-			<ipprotocol>inet</ipprotocol>
-			<tag></tag>
-			<tagged></tagged>
-			<max></max>
-			<max-src-nodes></max-src-nodes>
-			<max-src-conn></max-src-conn>
-			<max-src-states></max-src-states>
-			<statetimeout></statetimeout>
-			<statetype><![CDATA[keep state]]></statetype>
-			<os></os>
-			<protocol>tcp</protocol>
-			<source>
-				<any></any>
+				<network>wanip</network>
 				<port>443</port>
-			</source>
-			<destination>
-				<address>14.0.0.1</address>
-				<port>8443</port>
 			</destination>
 			<descr></descr>
+			<updated>
+				<time>1774211362</time>
+				<username><![CDATA[admin@192.168.1.100 (Local Database)]]></username>
+			</updated>
 			<created>
-				<time>1772314852</time>
+				<time>1774211362</time>
 				<username><![CDATA[admin@192.168.1.100 (Local Database)]]></username>
 			</created>
-			<updated>
-				<time>1772321018</time>
-				<username><![CDATA[admin@10.0.0.4 (Local Database)]]></username>
-			</updated>
 		</rule>
 		<rule>
 			<type>pass</type>
@@ -273,12 +199,10 @@
 			</destination>
 		</rule>
 		<separator>
-			<lan></lan>
 			<wan></wan>
 		</separator>
 	</filter>
-	<shaper>
-	</shaper>
+	<shaper></shaper>
 	<ipsec>
 		<client></client>
 	</ipsec>
@@ -385,8 +309,7 @@
 		<period>10</period>
 	</widgets>
 	<openvpn></openvpn>
-	<dnshaper>
-	</dnshaper>
+	<dnshaper></dnshaper>
 	<unbound>
 		<enable></enable>
 		<dnssec></dnssec>
@@ -397,20 +320,12 @@
 		<hideversion></hideversion>
 		<dnssecstripped></dnssecstripped>
 	</unbound>
-	<vlans>
-		<vlan>
-			<if>xn1</if>
-			<tag>40</tag>
-			<pcp>0</pcp>
-			<descr></descr>
-			<vlanif>xn1.40</vlanif>
-		</vlan>
-	</vlans>
+	<vlans></vlans>
 	<qinqs></qinqs>
 	<revision>
-		<time>1772321018</time>
-		<description><![CDATA[admin@10.0.0.4 (Local Database): Firewall: Rules - saved/edited a firewall rule.]]></description>
-		<username><![CDATA[admin@10.0.0.4 (Local Database)]]></username>
+		<time>1774211388</time>
+		<description><![CDATA[admin@192.168.1.100 (Local Database): Interfaces settings changed]]></description>
+		<username><![CDATA[admin@192.168.1.100 (Local Database)]]></username>
 	</revision>
 	<gateways>
 	</gateways>
@@ -426,5 +341,6 @@
 		<crt>LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUViekNDQTFlZ0F3SUJBZ0lJQW5NOXAydFdpdzR3RFFZSktvWklodmNOQVFFTEJRQXdWakUwTURJR0ExVUUKQ2hNcmNHWlRaVzV6WlNCSFZVa2daR1ZtWVhWc2RDQlRaV3htTFZOcFoyNWxaQ0JEWlhKMGFXWnBZMkYwWlRFZQpNQndHQTFVRUF4TVZjR1pUWlc1elpTMDJPRGRoTkdRd09XRXpZVEJqTUI0WERUSTFNRGN4T0RFek16STFOMW9YCkRUSTJNRGd5TURFek16STFOMW93VmpFME1ESUdBMVVFQ2hNcmNHWlRaVzV6WlNCSFZVa2daR1ZtWVhWc2RDQlQKWld4bUxWTnBaMjVsWkNCRFpYSjBhV1pwWTJGMFpURWVNQndHQTFVRUF4TVZjR1pUWlc1elpTMDJPRGRoTkdRdwpPV0V6WVRCak1JSUJJakFOQmdrcWhraUc5dzBCQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBdHVEMmpFYVRabElsClZMUTg0WDNpSXdNdGpiZVAwK09EK1cvbit0aVZrZVBVYm1pck9aZWZMbUNjbVNQL3N5ckxZTmVwMUNuQzk0UmMKZWFLbXBTdDI0b052NXErcWlOWGRYOGdpeTdwTWQvV0RrbkFyYktraysvWDl6MEx1K3pYY2dTcDZyakFNbTRlUQpuTFExYmRycFM4aXZxTXprUnlxR1FZZkVYK09GeURVZ00wRnhIb096MjNkU21pelozR21TQmdZYWpocTNpQkUwClBPNm9VbzFKL2M3TTJEQWV2SXNiTkpQWGlmdURFNi9RSlNUVmZlZWVVdk1DeGpQRlFnUWRaeE1XaUtTbm9pcHMKL0xMbU14MnBkdCsrdHhyTDdDUzU5YXNNbkNxblk3L1pmUHY3eDZULzlXaTB0WWYvMVYxV0poQTZmRk93bzV3eQpjRHFxM3VHNDd3SURBUUFCbzRJQlB6Q0NBVHN3Q1FZRFZSMFRCQUl3QURBUkJnbGdoa2dCaHZoQ0FRRUVCQU1DCkJrQXdDd1lEVlIwUEJBUURBZ1dnTURNR0NXQ0dTQUdHK0VJQkRRUW1GaVJQY0dWdVUxTk1JRWRsYm1WeVlYUmwKWkNCVFpYSjJaWElnUTJWeWRHbG1hV05oZEdVd0hRWURWUjBPQkJZRUZKaEZzcUxHNGZTeWVqL3RienQwNytCaQp1ZnYrTUc4R0ExVWRJd1JvTUdhaFdxUllNRll4TkRBeUJnTlZCQW9USzNCbVUyVnVjMlVnUjFWSklHUmxabUYxCmJIUWdVMlZzWmkxVGFXZHVaV1FnUTJWeWRHbG1hV05oZEdVeEhqQWNCZ05WQkFNVEZYQm1VMlZ1YzJVdE5qZzMKWVRSa01EbGhNMkV3WTRJSUFuTTlwMnRXaXc0d0p3WURWUjBsQkNBd0hnWUlLd1lCQlFVSEF3RUdDQ3NHQVFVRgpCd01DQmdnckJnRUZCUWdDQWpBZ0JnTlZIUkVFR1RBWGdoVndabE5sYm5ObExUWTROMkUwWkRBNVlUTmhNR013CkRRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFCRVpla3MzZFZBQUg4SE9JRkNqaHFkNmZsOEtuWGx3N1kwczBnOVkKTTVXTGQyeElIaHV6R2Uvb3U3cUozNkhQdkowclhIZ2dxc0VLMmJRYnlzdjFna0xrcU1nSW9LaUdiL2ZUOFVqMApoa2pXTGczQkxSMFh3b2tvdGo3K1BiOUNjZmMxWGFLZVdabU5QdkxQR3BZc3pDVmY0Q2YyMmV3K1BJVHJDbVRqCmtFMUpUTVkzQTZLYTB2eVV0cnNVWEpReGc1WHpoVGFlZDRwUUJ5bzgxMjM4Z3VHMkc3cTRDQ05NRU9sNjhEUlkKQVdwYUxkTktVN1lYTlFUMUZyTDVjN1FPZGlzZ1ZUL1JWZ043d1hzVTFSUWRCVEJiL1M3N2pWd0dvbE5yZWIyQwp1UzllL05mZDVWdmJNWm9UQ1cvWmczZGR4UDN0OVpzMmpOMndVVVZWWitKbENBND0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=</crt>
 		<prv>LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JSUV2Z0lCQURBTkJna3Foa2lHOXcwQkFRRUZBQVNDQktnd2dnU2tBZ0VBQW9JQkFRQzI0UGFNUnBObVVpVlUKdER6aGZlSWpBeTJOdDQvVDQ0UDViK2Y2MkpXUjQ5UnVhS3M1bDU4dVlKeVpJLyt6S3N0ZzE2blVLY0wzaEZ4NQpvcWFsSzNiaWcyL21yNnFJMWQxZnlDTEx1a3gzOVlPU2NDdHNxU1Q3OWYzUFF1NzdOZHlCS25xdU1BeWJoNUNjCnREVnQydWxMeUsrb3pPUkhLb1pCaDhSZjQ0WElOU0F6UVhFZWc3UGJkMUthTE5uY2FaSUdCaHFPR3JlSUVUUTgKN3FoU2pVbjl6c3pZTUI2OGl4czBrOWVKKzRNVHI5QWxKTlY5NTU1Uzh3TEdNOFZDQkIxbkV4YUlwS2VpS216OApzdVl6SGFsMjM3NjNHc3ZzSkxuMXF3eWNLcWRqdjlsOCsvdkhwUC8xYUxTMWgvL1ZYVlltRURwOFU3Q2puREp3Ck9xcmU0Ymp2QWdNQkFBRUNnZ0VBSTAwQWVtcGpLSVNoelJ4dmhnMWhHZVlTcElEeTQvRk9kOWM0bmN5eDduUGUKZlNONkxjZE5SRXdFM25DNituQS95dVZHVkh4dE5JOFp0S2NIYU9tZmJMRDNhRDJ2ZXZOaFpJeEMzeldLYmp0Mwpsc3hOTFkvbTRqWUZOTDFVV1N4MzhIenRLbk4rODRTekR2U2dQYURjbUxMWDZZc0hZNDliVkFucmg2RHBJWkIvCnRONnVUbzNoaDBuQ0p4djNQU2hzOFJQaGJpZDhjMkZwTzVocWJpSTFUNTgweTJsNEhHZU9iTEUyUmhISENVVjIKWlZyWjQ0cS9qd2NpWk5vMW1Wc01lUEN6K2VTQ1dJc1RTeCtSQ1h5WUZkTDdwRWd4OERDMnZ5THNsOW8yTkdUcQpkeGxwNzB1aGliZml1VmNlOGo1aTBpRFRjWGlhejI1L0dsYk5PcktUMFFLQmdRRHdUelRaUzBmTjIyK01Yb3VYCm95V0hibEdBOFVZZlFwVXpsalF1cXhiRW1oTkNydmgzQ2F4QzdlNWpDM0wzU3NET1pwNHFrRHFtNm85M2dGOG8KaEhzbUZuY0FJbmd1VUN2MmRLNHJiQ1Rjbkx2TE5GS0w3TmJpcmJSaEtJRDl0ZXlibW9rOUxCV1krc2gyM2dtWgptUkNPUU56NGh3RlBsMFczZUtoRW0vOVBYd0tCZ1FEQzBjeGIrMEgzdVVjOG03Q0NoYTlmZStvWVBhdXg3SGVyCmI1VFRNRnZ1ZlpMMUZtY0I5eXpIU3VuVm1sTzA3ejIyZFdXZ2ZSYUIwWi9FM1o4T3gvR1NQcUJNWUs0SzNvUlAKUDZBeE1HNVUzTC9pRlA1Qm9PM0NqK1o4Y29ETFdhTzFtajlTdzQ1VlJuYVdFVlVYVmpTeXdoWlJkcVFvbTdkZgpEZW9zV3Q1UWNRS0JnUURhK2VJWGk3Q3ZsaURNa1M2MGk5YmIxUnZ4Mm1uaWZHTEc4ajAwdFhSMnpFdDJ2VWZ0CitPTit6Wjhubzd3c09YTDk0YWFJOUlwdHBWbjhNLzhDUmM2T0EzU0dxK0pGbVlxbDl1YnE3STJlZGpmdDBBelUKTW9vUlh1WDZqdFVUMjkzeVlOeGo0TE1CaHF4N0hKTTA0clNpVzlxL29RNEJ2Nytva3dzS0VmaVJFd0tCZ0c2UApNVEpoL0tYZzk1UmxwbDNzRUFKWUNCbUpwZzVxNjk3V2k5YnQ4cjM5ZFpDeERmUUhtZG5mb2FRZTJMSXRzeEFBCnY1TzhhVEZ6RFFCajVRZzJYOWxtd1FHWFBDM2U2YWN2ckhFOTB0OUdCMzc5K3V5enJ6cGkvNkpRT05jdUg4SEgKcjNnQWtwM0NSem9TeS85YVpMMnRkNHp6ajJXY09Rd3drVnhxbFErQkFvR0JBTU5XQUNRUkhYNU4vOG1HQ2NKKwo2eCtDL2JKZDRUWDV1TVlqdDZoeEgzN0Y3WTVYTkw3N21wSGxaVlJER2d4T2xZak1Vd3VwL0VjSWtTbHVFa3pmCnhYYis0QUlzZENQcTFTajlTUjQ4end6VWpUSmJOOUZ0aS9KR2xCTzJ0RDdoY1JPQ2xlblU3Mi9ac09QQTdnOU8KSFJxNkJZRHI3dnlCeVNKd0JDMnRjUzRGCi0tLS0tRU5EIFBSSVZBVEUgS0VZLS0tLS0K</prv>
 	</cert>
-	<ppps></ppps>
+	<ppps>
+	</ppps>
 </pfsense>
